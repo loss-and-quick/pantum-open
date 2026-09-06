@@ -1,0 +1,28 @@
+# Working material, none of it publishable: captures carry whatever was on
+# the scanner glass, firmware images carry the device's private key, and vendor
+# filter output is the product of proprietary software. See AGENTS.md.
+logs/
+dumps/
+# Vendor filter output: proprietary derivative, kept locally only.
+dumps/print/reference/
+result
+result-*
+*.so
+*.o
+build/
+__pycache__/
+# Firmware images read out of the device: vendor code, and the flash tail
+# carries the device's TLS private key. Only their hashes are tracked.
+dumps/firmware/**/*.bin
+dumps/firmware/**/*.bin.gz
+dumps/firmware/*.bin
+dumps/firmware/*.bin.gz
+# Decompiler output of the vendor's binaries: a direct derivative of
+# proprietary code. Useful locally, must not be published. The method that
+# regenerates it is in notes/disasm-method.md.
+notes/tools/decomp-*.c
+# Verbatim extracts from the vendor's firmware image — string tables, symbol
+# and source-path lists. Same reasoning as the decompiler output: useful
+# locally, not ours to publish. What they establish is written up in notes/.
+dumps/firmware/*.txt
+!dumps/firmware/*/

@@ -1,0 +1,23 @@
+# SANE needs the raw USB node of the scanner, which by default belongs to root.
+#
+# Tagging a device with libsane_matched is how a SANE backend claims it: the
+# system rules that ship with sane-backends then grant the logged-in user
+# access through uaccess, and NixOS additionally hands group "scanner" an ACL.
+# Without this the scanner is only reachable because the printer half of the
+# device happens to be handled by the printing rules — which is luck, not
+# design, and does not hold on a machine that only scans.
+#
+# Ids match etc/sane.d/pantum.conf. Only 232b:0e20 has been tested on real
+# hardware; the rest share the protocol in the vendor driver.
+
+ACTION!="add", GOTO="pantum_open_end"
+SUBSYSTEM!="usb", GOTO="pantum_open_end"
+ENV{DEVTYPE}!="usb_device", GOTO="pantum_open_end"
+
+ATTR{idVendor}=="232b", ATTR{idProduct}=="0e20", MODE="0664", GROUP="scanner", ENV{libsane_matched}="yes"
+ATTR{idVendor}=="232b", ATTR{idProduct}=="1e20", MODE="0664", GROUP="scanner", ENV{libsane_matched}="yes"
+ATTR{idVendor}=="232b", ATTR{idProduct}=="7e20", MODE="0664", GROUP="scanner", ENV{libsane_matched}="yes"
+ATTR{idVendor}=="232b", ATTR{idProduct}=="2e20", MODE="0664", GROUP="scanner", ENV{libsane_matched}="yes"
+ATTR{idVendor}=="232b", ATTR{idProduct}=="086d", MODE="0664", GROUP="scanner", ENV{libsane_matched}="yes"
+
+LABEL="pantum_open_end"

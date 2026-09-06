@@ -1,0 +1,293 @@
+*PPD-Adobe: "4.3"
+*% SPDX-License-Identifier: GPL-2.0-or-later
+*%
+*% PPD for the free Pantum M6500/M6507 CUPS filter (rastertopantum).
+*% Written from the documented ZjStream/JBIG job format, not derived from
+*% the vendor PPD.  See notes/print-protocol.md.
+*%
+*% The NickName deliberately differs from the vendor one ("Pantum M6500
+*% Series") so both queues can coexist on the same machine.
+*FormatVersion: "4.3"
+*FileVersion: "1.0"
+*LanguageEncoding: ISOLatin1
+*LanguageVersion: English
+*Manufacturer: "Pantum"
+*PCFileName: "M6500OP.PPD"
+*Product: "(Pantum M6500 Series)"
+*PSVersion: "(3010.000) 0"
+*ModelName: "Pantum M6500 Series"
+*ShortNickName: "M6500 Series open"
+*NickName: "Pantum M6500 Series, rastertopantum"
+*cupsFilter: "application/vnd.cups-raster 0 rastertopantum"
+*cupsVersion: 1.4
+*cupsModelNumber: 6500
+
+*% The vendor filter picks its output branch from this string.  Our filter
+*% has the M6500 branch (PLATFORM_M, plain ZjStream, no PJL and no ACL)
+*% built in, but the entry is kept so the PPD stays self-describing and so
+*% the vendor binary would also do the right thing with it.
+*cupsIPPReason PlatForm/PlatForm: "text:PLATFORM_M"
+*End
+
+*% Shown while the printer waits for the operator to turn the stack over.
+*cupsIPPReason MDuplex/M: "text:Manual%20duplex:%20take%20the%20stack%20out%20of%20the%20output%20tray,
+text:turn%20it%20over%20and%20put%20it%20back%20printed%20side%20down.
+text:Do%20not%20remove%20any%20blank%20sheets.%20Then%20press%20the%20OK%20button."
+*End
+
+*% ==== Device capabilities ====
+*1284DeviceID: "MFG:Pantum;MDL:M6500 series;"
+*ColorDevice: False
+*DefaultColorSpace: Gray
+*LanguageLevel: "3"
+*FileSystem: False
+*Throughput: "22"
+*TTRasterizer: Type42
+*VariablePaperSize: True
+*LandscapeOrientation: Plus90
+*Protocols: BCP
+
+*% Only 600x600 is ever put on the wire; the "1200 dpi" mode below is a
+*% two-bit halftone at the same hardware resolution.
+*DefaultResolution: 600dpi
+
+*% ==== Paper handling ====
+*HWMargins: 14.17 14.17 14.17 14.17
+*MaxMediaWidth: "618"
+*MaxMediaHeight: "1021"
+*LeadingEdge Short: ""
+*DefaultLeadingEdge: Short
+
+*OpenGroup: PaperGroup/Paper
+*OpenUI *PageSize/Paper Size: PickOne
+*OrderDependency: 60.0 AnySetup *PageSize
+*DefaultPageSize: A4
+*PageSize Letter/Letter (8.5 x 11): "<</PageSize [612 792]/ImagingBBox null>>setpagedevice"
+*PageSize A4/A4 (210 x 297mm): "<</PageSize [595 842]/ImagingBBox null>>setpagedevice"
+*PageSize A5/A5 (148 x 210mm): "<</PageSize [420 595]/ImagingBBox null>>setpagedevice"
+*PageSize A6/A6 (105 x 148mm): "<</PageSize [298 420]/ImagingBBox null>>setpagedevice"
+*PageSize B5/JIS B5 (182 x 257mm): "<</PageSize [516 729]/ImagingBBox null>>setpagedevice"
+*PageSize ISOB5/ISO B5 (176 x 250mm): "<</PageSize [499 709]/ImagingBBox null>>setpagedevice"
+*PageSize B6/B6 (125 x 176mm): "<</PageSize [354 499]/ImagingBBox null>>setpagedevice"
+*PageSize Executive/Executive (7.25 x 10.5): "<</PageSize [522 756]/ImagingBBox null>>setpagedevice"
+*PageSize Statement/Statement (5.5 x 8.5): "<</PageSize [396 612]/ImagingBBox null>>setpagedevice"
+*PageSize Folio/Folio (8.5 x 13): "<</PageSize [612 936]/ImagingBBox null>>setpagedevice"
+*PageSize Oficio/Oficio (216 x 343mm): "<</PageSize [612 972]/ImagingBBox null>>setpagedevice"
+*PageSize Legal/Legal (8.5 x 14): "<</PageSize [612 1008]/ImagingBBox null>>setpagedevice"
+*PageSize Postcard/Postcard (100 x 148mm): "<</PageSize [283 420]/ImagingBBox null>>setpagedevice"
+*PageSize JapanesePostcard/Postcard (148 x 200mm): "<</PageSize [420 567]/ImagingBBox null>>setpagedevice"
+*PageSize 16K/16K (185 x 260mm): "<</PageSize [524 737]/ImagingBBox null>>setpagedevice"
+*PageSize Big16K/Big 16K (195 x 270mm): "<</PageSize [553 765]/ImagingBBox null>>setpagedevice"
+*PageSize 32K/32K (130 x 185mm): "<</PageSize [369 524]/ImagingBBox null>>setpagedevice"
+*PageSize Big32K/Big 32K (135 x 195mm): "<</PageSize [383 553]/ImagingBBox null>>setpagedevice"
+*PageSize ZL/ZL (120 x 230mm): "<</PageSize [340 652]/ImagingBBox null>>setpagedevice"
+*PageSize EnvMonarch/Monarch Env (3.875 x 7.5): "<</PageSize [279 540]/ImagingBBox null>>setpagedevice"
+*PageSize EnvDL/DL Env (110 x 220mm): "<</PageSize [312 624]/ImagingBBox null>>setpagedevice"
+*PageSize EnvC5/C5 Env (162 x 229mm): "<</PageSize [459 649]/ImagingBBox null>>setpagedevice"
+*PageSize EnvC6/C6 Env (114 x 162mm): "<</PageSize [323 459]/ImagingBBox null>>setpagedevice"
+*PageSize Com10Envelope/No.10 Env (4.125 x 9.5): "<</PageSize [297 684]/ImagingBBox null>>setpagedevice"
+*PageSize Yougata2/Yougata2 (114 x 162mm): "<</PageSize [323 459]/ImagingBBox null>>setpagedevice"
+*PageSize Yougata4/Yougata4 (105 x 235mm): "<</PageSize [298 666]/ImagingBBox null>>setpagedevice"
+*PageSize Younaga3/Younaga3 (120 x 235mm): "<</PageSize [340 666]/ImagingBBox null>>setpagedevice"
+*PageSize Nagagata3/Nagagata3 (120 x 235mm): "<</PageSize [340 666]/ImagingBBox null>>setpagedevice"
+*CloseUI: *PageSize
+
+*OpenUI *PageRegion/Paper Size: PickOne
+*OrderDependency: 80.0 AnySetup *PageRegion
+*DefaultPageRegion: A4
+*PageRegion Letter/Letter (8.5 x 11): "<</PageSize [612 792]/ImagingBBox null>>setpagedevice"
+*PageRegion A4/A4 (210 x 297mm): "<</PageSize [595 842]/ImagingBBox null>>setpagedevice"
+*PageRegion A5/A5 (148 x 210mm): "<</PageSize [420 595]/ImagingBBox null>>setpagedevice"
+*PageRegion A6/A6 (105 x 148mm): "<</PageSize [298 420]/ImagingBBox null>>setpagedevice"
+*PageRegion B5/JIS B5 (182 x 257mm): "<</PageSize [516 729]/ImagingBBox null>>setpagedevice"
+*PageRegion ISOB5/ISO B5 (176 x 250mm): "<</PageSize [499 709]/ImagingBBox null>>setpagedevice"
+*PageRegion B6/B6 (125 x 176mm): "<</PageSize [354 499]/ImagingBBox null>>setpagedevice"
+*PageRegion Executive/Executive (7.25 x 10.5): "<</PageSize [522 756]/ImagingBBox null>>setpagedevice"
+*PageRegion Statement/Statement (5.5 x 8.5): "<</PageSize [396 612]/ImagingBBox null>>setpagedevice"
+*PageRegion Folio/Folio (8.5 x 13): "<</PageSize [612 936]/ImagingBBox null>>setpagedevice"
+*PageRegion Oficio/Oficio (216 x 343mm): "<</PageSize [612 972]/ImagingBBox null>>setpagedevice"
+*PageRegion Legal/Legal (8.5 x 14): "<</PageSize [612 1008]/ImagingBBox null>>setpagedevice"
+*PageRegion Postcard/Postcard (100 x 148mm): "<</PageSize [283 420]/ImagingBBox null>>setpagedevice"
+*PageRegion JapanesePostcard/Postcard (148 x 200mm): "<</PageSize [420 567]/ImagingBBox null>>setpagedevice"
+*PageRegion 16K/16K (185 x 260mm): "<</PageSize [524 737]/ImagingBBox null>>setpagedevice"
+*PageRegion Big16K/Big 16K (195 x 270mm): "<</PageSize [553 765]/ImagingBBox null>>setpagedevice"
+*PageRegion 32K/32K (130 x 185mm): "<</PageSize [369 524]/ImagingBBox null>>setpagedevice"
+*PageRegion Big32K/Big 32K (135 x 195mm): "<</PageSize [383 553]/ImagingBBox null>>setpagedevice"
+*PageRegion ZL/ZL (120 x 230mm): "<</PageSize [340 652]/ImagingBBox null>>setpagedevice"
+*PageRegion EnvMonarch/Monarch Env (3.875 x 7.5): "<</PageSize [279 540]/ImagingBBox null>>setpagedevice"
+*PageRegion EnvDL/DL Env (110 x 220mm): "<</PageSize [312 624]/ImagingBBox null>>setpagedevice"
+*PageRegion EnvC5/C5 Env (162 x 229mm): "<</PageSize [459 649]/ImagingBBox null>>setpagedevice"
+*PageRegion EnvC6/C6 Env (114 x 162mm): "<</PageSize [323 459]/ImagingBBox null>>setpagedevice"
+*PageRegion Com10Envelope/No.10 Env (4.125 x 9.5): "<</PageSize [297 684]/ImagingBBox null>>setpagedevice"
+*PageRegion Yougata2/Yougata2 (114 x 162mm): "<</PageSize [323 459]/ImagingBBox null>>setpagedevice"
+*PageRegion Yougata4/Yougata4 (105 x 235mm): "<</PageSize [298 666]/ImagingBBox null>>setpagedevice"
+*PageRegion Younaga3/Younaga3 (120 x 235mm): "<</PageSize [340 666]/ImagingBBox null>>setpagedevice"
+*PageRegion Nagagata3/Nagagata3 (120 x 235mm): "<</PageSize [340 666]/ImagingBBox null>>setpagedevice"
+*CloseUI: *PageRegion
+
+*DefaultImageableArea: A4
+*ImageableArea Letter/Letter (8.5 x 11): "14.17 14.17 597.83 777.83"
+*ImageableArea A4/A4 (210 x 297mm): "14.17 14.17 580.83 827.83"
+*ImageableArea A5/A5 (148 x 210mm): "14.17 14.17 405.83 580.83"
+*ImageableArea A6/A6 (105 x 148mm): "14.17 14.17 283.83 405.83"
+*ImageableArea B5/JIS B5 (182 x 257mm): "14.17 14.17 501.83 714.83"
+*ImageableArea ISOB5/ISO B5 (176 x 250mm): "14.17 14.17 484.83 694.83"
+*ImageableArea B6/B6 (125 x 176mm): "14.17 14.17 339.83 484.83"
+*ImageableArea Executive/Executive (7.25 x 10.5): "14.17 14.17 507.83 741.83"
+*ImageableArea Statement/Statement (5.5 x 8.5): "14.17 14.17 381.83 597.83"
+*ImageableArea Folio/Folio (8.5 x 13): "14.17 14.17 597.83 921.83"
+*ImageableArea Oficio/Oficio (216 x 343mm): "14.17 14.17 597.83 957.83"
+*ImageableArea Legal/Legal (8.5 x 14): "14.17 14.17 597.83 993.83"
+*ImageableArea Postcard/Postcard (100 x 148mm): "14.17 14.17 268.83 405.83"
+*ImageableArea JapanesePostcard/Postcard (148 x 200mm): "14.17 14.17 405.35 552.76"
+*ImageableArea 16K/16K (185 x 260mm): "14.17 14.17 509.83 722.83"
+*ImageableArea Big16K/Big 16K (195 x 270mm): "14.17 14.17 538.83 750.83"
+*ImageableArea 32K/32K (130 x 185mm): "14.17 14.17 354.83 509.83"
+*ImageableArea Big32K/Big 32K (135 x 195mm): "14.17 14.17 368.83 538.83"
+*ImageableArea ZL/ZL (120 x 230mm): "14.17 14.17 325.83 637.83"
+*ImageableArea EnvMonarch/Monarch Env (3.875 x 7.5): "14.17 14.17 264.83 525.83"
+*ImageableArea EnvDL/DL Env (110 x 220mm): "14.17 14.17 297.83 609.83"
+*ImageableArea EnvC5/C5 Env (162 x 229mm): "14.17 14.17 444.83 634.83"
+*ImageableArea EnvC6/C6 Env (114 x 162mm): "14.17 14.17 308.83 444.83"
+*ImageableArea Com10Envelope/No.10 Env (4.125 x 9.5): "14.17 14.17 282.83 669.83"
+*ImageableArea Yougata2/Yougata2 (114 x 162mm): "14.17 14.17 308.98 445.04"
+*ImageableArea Yougata4/Yougata4 (105 x 235mm): "14.17 14.17 283.46 651.97"
+*ImageableArea Younaga3/Younaga3 (120 x 235mm): "14.17 14.17 325.98 651.97"
+*ImageableArea Nagagata3/Nagagata3 (120 x 235mm): "14.17 14.17 325.98 651.97"
+
+*DefaultPaperDimension: A4
+*PaperDimension Letter/Letter (8.5 x 11): "612 792"
+*PaperDimension A4/A4 (210 x 297mm): "595 842"
+*PaperDimension A5/A5 (148 x 210mm): "420 595"
+*PaperDimension A6/A6 (105 x 148mm): "298 420"
+*PaperDimension B5/JIS B5 (182 x 257mm): "516 729"
+*PaperDimension ISOB5/ISO B5 (176 x 250mm): "499 709"
+*PaperDimension B6/B6 (125 x 176mm): "354 499"
+*PaperDimension Executive/Executive (7.25 x 10.5): "522 756"
+*PaperDimension Statement/Statement (5.5 x 8.5): "396 612"
+*PaperDimension Folio/Folio (8.5 x 13): "612 936"
+*PaperDimension Oficio/Oficio (216 x 343mm): "612 972"
+*PaperDimension Legal/Legal (8.5 x 14): "612 1008"
+*PaperDimension Postcard/Postcard (100 x 148mm): "283 420"
+*PaperDimension JapanesePostcard/Postcard (148 x 200mm): "420 567"
+*PaperDimension 16K/16K (185 x 260mm): "524 737"
+*PaperDimension Big16K/Big 16K (195 x 270mm): "553 765"
+*PaperDimension 32K/32K (130 x 185mm): "369 524"
+*PaperDimension Big32K/Big 32K (135 x 195mm): "383 553"
+*PaperDimension ZL/ZL (120 x 230mm): "340 652"
+*PaperDimension EnvMonarch/Monarch Env (3.875 x 7.5): "279 540"
+*PaperDimension EnvDL/DL Env (110 x 220mm): "312 624"
+*PaperDimension EnvC5/C5 Env (162 x 229mm): "459 649"
+*PaperDimension EnvC6/C6 Env (114 x 162mm): "323 459"
+*PaperDimension Com10Envelope/No.10 Env (4.125 x 9.5): "297 684"
+*PaperDimension Yougata2/Yougata2 (114 x 162mm): "323 459"
+*PaperDimension Yougata4/Yougata4 (105 x 235mm): "298 666"
+*PaperDimension Younaga3/Younaga3 (120 x 235mm): "340 666"
+*PaperDimension Nagagata3/Nagagata3 (120 x 235mm): "340 666"
+
+*% Anything the firmware has no code for is sent as a custom page: the
+*% filter then emits DMPAPER 0 plus the width/height in 1/600 inch.
+*CustomPageSize True: "pop pop pop <</PageSize [5 -2 roll] /ImagingBBox null>> setpagedevice"
+*ParamCustomPageSize Width: 1 points 212 618
+*ParamCustomPageSize Height: 2 points 419 1021
+*ParamCustomPageSize WidthOffset: 3 points 0 0
+*ParamCustomPageSize HeightOffset: 4 points 0 0
+*ParamCustomPageSize Orientation: 5 int 1 1
+
+*% cupsMediaType is what the filter actually reads; the option string is
+*% never consulted for the media type.
+*OpenUI *MediaType/Paper Type: PickOne
+*OrderDependency: 10.0 AnySetup *MediaType
+*DefaultMediaType: Plain
+*MediaType Plain/Plain: "<</MediaType(Plain)/cupsMediaType 1>>setpagedevice"
+*% The vendor PPD calls this one "Kleenex". The wire value (263) is what the
+*% device cares about; the keyword is ours.
+*MediaType Thin/Thin paper: "<</MediaType(Thin paper)/cupsMediaType 263>>setpagedevice"
+*MediaType Thick/Thick: "<</MediaType(Thick)/cupsMediaType 289>>setpagedevice"
+*MediaType Cardstock/Cardstock: "<</MediaType(Card)/cupsMediaType 286>>setpagedevice"
+*MediaType Label/Label: "<</MediaType(Labels)/cupsMediaType 261>>setpagedevice"
+*MediaType Envelope/Envelope: "<</MediaType(Envelope)/cupsMediaType 259>>setpagedevice"
+*MediaType Transparency/Transparency: "<</MediaType(Transparency)/cupsMediaType 2>>setpagedevice"
+*CloseUI: *MediaType
+
+*% Any media type other than Plain forces the manual tray, whatever is
+*% selected here.
+*OpenUI *InputSlot/Paper Source: PickOne
+*OrderDependency: 20.0 AnySetup *InputSlot
+*DefaultInputSlot: Auto
+*InputSlot Auto/Automatic: "<</MediaPosition 0>>setpagedevice"
+*InputSlot ManualFeed/Manual Feeder: "<</MediaPosition 1>>setpagedevice"
+*InputSlot AutoFeed/Automatic Feeder: "<</MediaPosition 2>>setpagedevice"
+*CloseUI: *InputSlot
+
+*% There is no hardware duplex on this model.  Manual duplex prints the
+*% front sides, pauses the engine and then prints the backs in reverse.
+*OpenUI *ManualDuplex/Manual Duplex: Boolean
+*OrderDependency: 15.0 AnySetup *ManualDuplex
+*DefaultManualDuplex: False
+*ManualDuplex False/Off: "<</ManualDuplex false>>setpagedevice"
+*ManualDuplex True/On: "<</ManualDuplex true>>setpagedevice"
+*CloseUI: *ManualDuplex
+*CloseGroup: PaperGroup
+
+*OpenGroup: Graphics/Print Quality
+*% Both settings put 600x600 in the raster header: at "1200 DPI" the filter
+*% switches to two bits per pixel and doubles the JBIG image width.
+*OpenUI *DPI1200/Resolution: PickOne
+*OrderDependency: 10.0 AnySetup *DPI1200
+*DefaultDPI1200: False
+*DPI1200 False/600 DPI: "<</HWResolution [600 600]/cupsBitsPerColor 8/cupsBitsPerPixel 8/cupsColorSpace 0>>setpagedevice"
+*DPI1200 True/1200 DPI: "<</HWResolution [600 600]/cupsBitsPerColor 8/cupsBitsPerPixel 8/cupsColorSpace 0>>setpagedevice"
+*CloseUI: *DPI1200
+
+*OpenUI *Density/Density: PickOne
+*OrderDependency: 50.0 AnySetup *Density
+*DefaultDensity: 2
+*Density 0/Lighter: ""
+*Density 2/Normal: ""
+*Density 4/Darker: ""
+*CloseUI: *Density
+
+*% Toner save has no bit of its own here: it is the minimum density.
+*OpenUI *TonerMode/Toner Save: Boolean
+*OrderDependency: 55.0 AnySetup *TonerMode
+*DefaultTonerMode: False
+*TonerMode False/Off: ""
+*TonerMode True/On: ""
+*CloseUI: *TonerMode
+
+*OpenUI *NegativePrint/Negative Print: Boolean
+*OrderDependency: 56.0 AnySetup *NegativePrint
+*DefaultNegativePrint: False
+*NegativePrint False/Off: ""
+*NegativePrint True/On: ""
+*CloseUI: *NegativePrint
+
+*OpenUI *ImageRotation/Rotate 180 degrees: Boolean
+*OrderDependency: 57.0 AnySetup *ImageRotation
+*DefaultImageRotation: False
+*ImageRotation False/Off: ""
+*ImageRotation True/On: ""
+*CloseUI: *ImageRotation
+*CloseGroup: Graphics
+
+*% Kept from the vendor PPD, which declares the same pair: a negative page is
+*% mostly toner, and printing it at the toner-save density gives a grey mess
+*% rather than a saving.
+*UIConstraints: *NegativePrint True *TonerMode True
+*UIConstraints: *TonerMode True *NegativePrint True
+*% Manual duplex needs paper the engine can take twice.
+*UIConstraints: *ManualDuplex True *MediaType Thin
+*UIConstraints: *ManualDuplex True *MediaType Thick
+*UIConstraints: *ManualDuplex True *MediaType Cardstock
+*UIConstraints: *ManualDuplex True *MediaType Label
+*UIConstraints: *ManualDuplex True *MediaType Envelope
+*UIConstraints: *ManualDuplex True *MediaType Transparency
+*UIConstraints: *MediaType Thin *ManualDuplex True
+*UIConstraints: *MediaType Thick *ManualDuplex True
+*UIConstraints: *MediaType Cardstock *ManualDuplex True
+*UIConstraints: *MediaType Label *ManualDuplex True
+*UIConstraints: *MediaType Envelope *ManualDuplex True
+*UIConstraints: *MediaType Transparency *ManualDuplex True
+
+*% ==== End of PPD ====
